@@ -63,8 +63,10 @@
         android:id="@+id/tv_duration_detail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
         android:layout_marginStart="6dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/barrier"
         app:layout_constraintTop_toTopOf="@+id/tv_genre_detail"
         tools:text="2h 14m" />
@@ -147,7 +149,7 @@
         app:layout_constraintTop_toBottomOf="@+id/img_detail" />
 
     <TextView
-        android:id="@+id/tv_description"
+        android:id="@+id/tv_description_detail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"

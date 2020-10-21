@@ -10,7 +10,7 @@ import com.nugrahaa.moviecatalogue.R
 import com.nugrahaa.moviecatalogue.model.TvShowEntity
 import kotlinx.android.synthetic.main.items_tvshow.view.*
 
-class TvShowsAdapter: RecyclerView.Adapter<TvShowsAdapter.TvShowsViewHolder>() {
+class TvShowsAdapter(private val callback: TvShowsFragmentCallback): RecyclerView.Adapter<TvShowsAdapter.TvShowsViewHolder>() {
 
     private var listTvShow = ArrayList<TvShowEntity>()
 
@@ -32,7 +32,7 @@ class TvShowsAdapter: RecyclerView.Adapter<TvShowsAdapter.TvShowsViewHolder>() {
 
     override fun getItemCount(): Int = listTvShow.size
 
-    class TvShowsViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    inner class TvShowsViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         fun bind(tvShow: TvShowEntity) {
             with(itemView) {
                 tv_tvshow_title.text = tvShow.title
@@ -43,6 +43,11 @@ class TvShowsAdapter: RecyclerView.Adapter<TvShowsAdapter.TvShowsViewHolder>() {
                         .apply(RequestOptions.placeholderOf(R.drawable.ic_loading)
                                 .error(R.drawable.ic_error))
                         .into(img_poster_tvshow)
+
+                itemView.setOnClickListener {
+                    callback.onClickGotoDetail(tvShow)
+                }
+
             }
         }
     }

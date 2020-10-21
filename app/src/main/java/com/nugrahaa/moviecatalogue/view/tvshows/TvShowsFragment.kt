@@ -1,5 +1,6 @@
 package com.nugrahaa.moviecatalogue.view.tvshows
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,9 +9,11 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nugrahaa.moviecatalogue.R
+import com.nugrahaa.moviecatalogue.model.TvShowEntity
+import com.nugrahaa.moviecatalogue.view.detail.DetailActivity
 import kotlinx.android.synthetic.main.fragment_tv_shows.*
 
-class TvShowsFragment : Fragment() {
+class TvShowsFragment : Fragment(), TvShowsFragmentCallback {
 
     private lateinit var viewModel: TvShowsViewModel
 
@@ -28,13 +31,19 @@ class TvShowsFragment : Fragment() {
             viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[TvShowsViewModel::class.java]
             val tvShows = viewModel.getTvShow()
 
-            val tvShowAdapter = TvShowsAdapter()
+            val tvShowAdapter = TvShowsAdapter(this)
             tvShowAdapter.setTvShows(tvShows)
 
             rv_tvshow.layoutManager = LinearLayoutManager(context)
             rv_tvshow.setHasFixedSize(true)
             rv_tvshow.adapter = tvShowAdapter
         }
+    }
+
+    override fun onClickGotoDetail(tvShowEntity: TvShowEntity) {
+        val mIntent = Intent(context, DetailActivity::class.java)
+        mIntent.putExtra("EXTRA_TVSHOW", tvShowEntity)
+        startActivity(mIntent)
     }
 
 }
