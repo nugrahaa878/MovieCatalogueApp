@@ -43,7 +43,8 @@ class MoviesFragment : Fragment(), MoviesFragmentCallback {
 
     override fun onClickGotoDetail(movie: MovieEntity) {
         val mIntent = Intent(context, DetailActivity::class.java)
-        mIntent.putExtra("EXTRA_ITEM", movie)
+        mIntent.putExtra("TYPE", "movie")
+        mIntent.putExtra("ID", movie.id)
         startActivity(mIntent)
     }
 

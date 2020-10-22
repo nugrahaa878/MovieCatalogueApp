@@ -12,6 +12,7 @@ object DataDummy {
 
         movies.add(
             MovieEntity(
+                0,
                 "A Star Is Born",
                 "75",
                 "Oktober 3, 2018",
@@ -24,6 +25,7 @@ object DataDummy {
 
         movies.add(
             MovieEntity(
+                1,
                 "Alita: Battle Angel",
                 "71",
                 "Januari 31, 2019",
@@ -36,6 +38,7 @@ object DataDummy {
 
         movies.add(
             MovieEntity(
+                2,
                 "Aquaman",
                 "69",
                 "Desember 7, 2018",
@@ -48,6 +51,7 @@ object DataDummy {
 
         movies.add(
             MovieEntity(
+                3,
                 "Bohemian Rhapsody",
                 "80",
                 "Oktober 24, 2018",
@@ -60,6 +64,7 @@ object DataDummy {
 
         movies.add(
             MovieEntity(
+                4,
                 "Cold Pursuit",
                 "56",
                 "Februari 7, 2019",
@@ -72,6 +77,7 @@ object DataDummy {
 
         movies.add(
             MovieEntity(
+                5,
                 "Creed",
                 "74",
                 "November 25, 2015",
@@ -84,6 +90,7 @@ object DataDummy {
 
         movies.add(
             MovieEntity(
+                6,
                 "Fantastic Beasts: The Crimes of Grindelwald",
                 "69",
                 "November 14, 2018",
@@ -96,6 +103,7 @@ object DataDummy {
 
         movies.add(
             MovieEntity(
+                7,
                 "Glass",
                 "66",
                 "Januari 16, 2019",
@@ -108,6 +116,7 @@ object DataDummy {
 
         movies.add(
             MovieEntity(
+                8,
                 "How to Train Your Dragon: The Hidden World",
                 "78",
                 "Januari 3, 2019",
@@ -120,6 +129,7 @@ object DataDummy {
 
         movies.add(
             MovieEntity(
+                9,
                 "Avengers: Infinity War",
                 "83",
                 "April 25, 2018",
@@ -132,6 +142,7 @@ object DataDummy {
 
         movies.add(
             MovieEntity(
+                10,
                 "Spider-Man: Into the Spider-Verse",
                 "84",
                 "Desember 6, 2018",
@@ -152,6 +163,7 @@ object DataDummy {
 
         tvShows.add(
             TvShowEntity(
+                0,
                 "Arrow",
                 "65",
                 "Oktober 10, 2012",
@@ -164,6 +176,7 @@ object DataDummy {
 
         tvShows.add(
             TvShowEntity(
+                1,
                 "Doom Patrol",
                 "75",
                 "Februari 15, 2019",
@@ -176,6 +189,7 @@ object DataDummy {
 
         tvShows.add(
             TvShowEntity(
+                2,
                 "Dragon Ball Z",
                 "81",
                 "April 26, 1989",
@@ -188,6 +202,7 @@ object DataDummy {
 
         tvShows.add(
             TvShowEntity(
+                3,
                 "Fairy Tail",
                 "75",
                 "Oktober 12, 2009",
@@ -200,6 +215,7 @@ object DataDummy {
 
         tvShows.add(
             TvShowEntity(
+                4,
                 "Family Guy",
                 "68",
                 "Januari 31, 1999",
@@ -212,6 +228,7 @@ object DataDummy {
 
         tvShows.add(
             TvShowEntity(
+                5,
                 "The Flash",
                 "75",
                 "Oktober 7, 2014",
@@ -224,6 +241,7 @@ object DataDummy {
 
         tvShows.add(
             TvShowEntity(
+                6,
                 "Grey's Anatomy",
                 "80",
                 "Maret 27, 2005",
@@ -236,6 +254,7 @@ object DataDummy {
 
         tvShows.add(
             TvShowEntity(
+                7,
                 "Marvel's Iron Fist",
                 "64",
                 "Maret 17, 2017",
@@ -248,6 +267,7 @@ object DataDummy {
 
         tvShows.add(
             TvShowEntity(
+                8,
                 "Riverdale",
                 "86",
                 "Januari 26, 2017",
@@ -260,6 +280,7 @@ object DataDummy {
 
         tvShows.add(
             TvShowEntity(
+                9,
                 "Shameless",
                 "79",
                 "Januari 9, 2011",
@@ -272,6 +293,7 @@ object DataDummy {
 
         tvShows.add(
             TvShowEntity(
+                10,
                 "Supergirl",
                 "70",
                 "Oktober 26, 2015",
@@ -283,6 +305,14 @@ object DataDummy {
         )
 
         return tvShows
+    }
+
+    fun getMoviesById(id: Int, listMovies: ArrayList<MovieEntity>): MovieEntity {
+        return listMovies[id]
+    }
+
+    fun getTvShowById(id: Int, listTvShow: ArrayList<TvShowEntity>): TvShowEntity {
+        return listTvShow[id]
     }
 
 }

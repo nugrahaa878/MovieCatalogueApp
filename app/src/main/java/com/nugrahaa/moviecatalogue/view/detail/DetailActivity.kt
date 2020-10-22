@@ -2,6 +2,7 @@ package com.nugrahaa.moviecatalogue.view.detail
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.nugrahaa.moviecatalogue.R
@@ -11,24 +12,30 @@ import kotlinx.android.synthetic.main.activity_detail.*
 
 class DetailActivity : AppCompatActivity() {
 
+    private lateinit var viewModel: DetailActivityViewModel
+
     companion object {
-        const val EXTRA_MOVIE = "extra_movie"
-        const val EXTRA_TVSHOW = "extra_tvshow"
+        const val TYPE = "type"
+        const val ID = "id"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
 
-        val getDataMovie = intent.getParcelableExtra<MovieEntity>("EXTRA_ITEM")
-        val getDataTvShow = intent.getParcelableExtra<TvShowEntity>("EXTRA_TVSHOW")
+        val getType = intent.getStringExtra("TYPE")
+        val getId = intent.getIntExtra("ID", -1)
 
-        if (getDataMovie != null) {
-            addMovieToView(getDataMovie)
-        }
+        viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[DetailActivityViewModel::class.java]
 
-        if (getDataTvShow != null) {
-            addTvShowToView(getDataTvShow)
+        if (getType == "movie") {
+            val listMovie = viewModel.getMovie()
+            val movie = viewModel.getMovieById(getId, listMovie as ArrayList)
+            addMovieToView(movie)
+        } else if (getType == "tvshow") {
+            val listTvShow = viewModel.getTvShow()
+            val tvShow = viewModel.getTvShowById(getId, listTvShow as ArrayList)
+            addTvShowToView(tvShow)
         }
 
     }

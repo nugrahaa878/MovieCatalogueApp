@@ -42,7 +42,8 @@ class TvShowsFragment : Fragment(), TvShowsFragmentCallback {
 
     override fun onClickGotoDetail(tvShowEntity: TvShowEntity) {
         val mIntent = Intent(context, DetailActivity::class.java)
-        mIntent.putExtra("EXTRA_TVSHOW", tvShowEntity)
+        mIntent.putExtra("TYPE", "tvshow")
+        mIntent.putExtra("ID", tvShowEntity.id)
         startActivity(mIntent)
     }
 
