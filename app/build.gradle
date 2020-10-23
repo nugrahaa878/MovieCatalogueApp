@@ -60,4 +60,7 @@ dependencies {
     // circular progress bar
     implementation 'com.mikhaellopez:circularprogressbar:3.0.3'
 
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:$espressoVersion"
+    androidTestImplementation "androidx.test:rules:$androidXTestVersion"
+
 }
