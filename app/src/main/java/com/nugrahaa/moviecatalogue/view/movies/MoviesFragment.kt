@@ -30,7 +30,11 @@ class MoviesFragment : Fragment(), MoviesFragmentCallback {
         super.onActivityCreated(savedInstanceState)
         if (activity != null) {
             viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[MoviesViewModel::class.java]
-            val movies = viewModel.getMovie()
+            val movies = ArrayList<MovieEntity>()
+
+            if (movies.isEmpty()) {
+                showEmptyMoviesStatus()
+            }
 
             val moviesAdapter = MoviesAdapter(this)
             moviesAdapter.setMovies(movies)
@@ -39,6 +43,11 @@ class MoviesFragment : Fragment(), MoviesFragmentCallback {
             rv_movies.setHasFixedSize(true)
             rv_movies.adapter = moviesAdapter
         }
+    }
+
+    private fun showEmptyMoviesStatus() {
+        rv_movies.visibility = View.GONE
+        img_empty.visibility = View.VISIBLE
     }
 
     override fun onClickGotoDetail(movie: MovieEntity) {

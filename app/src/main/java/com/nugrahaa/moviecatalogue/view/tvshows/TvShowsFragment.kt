@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nugrahaa.moviecatalogue.R
@@ -31,6 +32,10 @@ class TvShowsFragment : Fragment(), TvShowsFragmentCallback {
             viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[TvShowsViewModel::class.java]
             val tvShows = viewModel.getTvShow()
 
+            if (tvShows.isEmpty()) {
+                showTvShowsEmptyStatus()
+            }
+
             val tvShowAdapter = TvShowsAdapter(this)
             tvShowAdapter.setTvShows(tvShows)
 
@@ -38,6 +43,11 @@ class TvShowsFragment : Fragment(), TvShowsFragmentCallback {
             rv_tvshow.setHasFixedSize(true)
             rv_tvshow.adapter = tvShowAdapter
         }
+    }
+
+    private fun showTvShowsEmptyStatus() {
+        rv_tvshow.visibility = View.GONE
+        img_empty.visibility = View.VISIBLE
     }
 
     override fun onClickGotoDetail(tvShowEntity: TvShowEntity) {
