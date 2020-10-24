@@ -5,7 +5,7 @@ import org.junit.Test
 
 import org.junit.Assert.*
 
-class DetailActivityViewModelTest {
+class   DetailActivityViewModelTest {
 
     private lateinit var detailActivityViewModel: DetailActivityViewModel
 
@@ -30,7 +30,6 @@ class DetailActivityViewModelTest {
         assertNotNull(listMovie)
         assertNotNull(movie)
         assertEquals("A Star Is Born", movie.title)
-
     }
 
     @Test

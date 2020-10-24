@@ -14,11 +14,6 @@ class DetailActivity : AppCompatActivity() {
 
     private lateinit var viewModel: DetailActivityViewModel
 
-    companion object {
-        const val TYPE = "type"
-        const val ID = "id"
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
@@ -31,16 +26,18 @@ class DetailActivity : AppCompatActivity() {
         if (getType == "movie") {
             val listMovie = viewModel.getMovie()
             val movie = viewModel.getMovieById(getId, listMovie as ArrayList)
+            supportActionBar?.title = "About Movie"
             addMovieToView(movie)
         } else if (getType == "tvshow") {
             val listTvShow = viewModel.getTvShow()
             val tvShow = viewModel.getTvShowById(getId, listTvShow as ArrayList)
+            supportActionBar?.title = "About TvShow"
             addTvShowToView(tvShow)
         }
 
     }
 
-    fun addMovieToView(movieEntity: MovieEntity) {
+    private fun addMovieToView(movieEntity: MovieEntity) {
         tv_title_detail.text = movieEntity.title
         tv_date_detail.text = movieEntity.date
         tv_duration_detail.text = movieEntity.duration
@@ -65,7 +62,7 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
-    fun addTvShowToView(tvShowEntity: TvShowEntity) {
+    private fun addTvShowToView(tvShowEntity: TvShowEntity) {
         tv_title_detail.text = tvShowEntity.title
         tv_date_detail.text = tvShowEntity.date
         tv_duration_detail.text = tvShowEntity.duration

@@ -17,7 +17,7 @@ object DataDummy {
                 "75",
                 "Oktober 3, 2018",
                 "Bradley Cooper",
-                "Drama, Romance, Music",
+                "Drama, Romance",
                 "Seasoned musician Jackson Maine discovers — and falls in love with — struggling artist Ally. She has just about given up on her dream to make it big as a singer — until Jack coaxes her into the spotlight. But even as Ally's career takes off, the personal side of their relationship is breaking down, as Jack fights an ongoing battle with his own internal demons.",
                 "2h 16m", R.drawable.poster_a_start_is_born
             )
@@ -30,7 +30,7 @@ object DataDummy {
                 "71",
                 "Januari 31, 2019",
                 "Robert Rodriguez",
-                "Action, Science Fiction, Adventure",
+                "Action, Adventure",
                 "When Alita awakens with no memory of who she is in a future world she does not recognize, she is taken in by Ido, a compassionate doctor who realizes that somewhere in this abandoned cyborg shell is the heart and soul of a young woman with an extraordinary past.",
                 "2h 2m", R.drawable.poster_alita
             )
@@ -43,7 +43,7 @@ object DataDummy {
                 "69",
                 "Desember 7, 2018",
                 "James Wan",
-                "Action, Adventure, Fantasy",
+                "Action, Fantasy",
                 "Once home to the most advanced civilization on Earth, Atlantis is now an underwater kingdom ruled by the power-hungry King Orm. With a vast army at his disposal, Orm plans to conquer the remaining oceanic people and then the surface world. Standing in his way is Arthur Curry, Orm's half-human, half-Atlantean brother and true heir to the throne.",
                 "2h 24m", R.drawable.poster_aquaman
             )
@@ -69,7 +69,7 @@ object DataDummy {
                 "56",
                 "Februari 7, 2019",
                 "Hans Petter Moland",
-                "Action, Crime, Thriller",
+                "Action, Thriller",
                 "The quiet family life of Nels Coxman, a snowplow driver, is upended after his son's murder. Nels begins a vengeful hunt for Viking, the drug lord he holds responsible for the killing, eliminating Viking's associates one by one. As Nels draws closer to Viking, his actions bring even more unexpected and violent consequences, as he proves that revenge is all in the execution.",
                 "1h 59m", R.drawable.poster_cold_persuit
             )
@@ -95,7 +95,7 @@ object DataDummy {
                 "69",
                 "November 14, 2018",
                 "David Yates",
-                "Adventure, Fantasy, Drama",
+                "Adventure, Drama",
                 "Gellert Grindelwald has escaped imprisonment and has begun gathering followers to his cause—elevating wizards above all non-magical beings. The only one capable of putting a stop to him is the wizard he once called his closest friend, Albus Dumbledore. However, Dumbledore will need to seek help from the wizard who had thwarted Grindelwald once before, his former student Newt Scamander, who agrees to help, unaware of the dangers that lie ahead. Lines are drawn as love and loyalty are tested, even among the truest friends and family, in an increasingly divided wizarding world.",
                 "2h 14m", R.drawable.poster_crimes
             )
@@ -108,7 +108,7 @@ object DataDummy {
                 "66",
                 "Januari 16, 2019",
                 "M. Night Shyamalan",
-                "Thriller, Drama, Science Fiction",
+                "Thriller, Science",
                 "In a series of escalating encounters, former security guard David Dunn uses his supernatural abilities to track Kevin Wendell Crumb, a disturbed man who has twenty-four personalities. Meanwhile, the shadowy presence of Elijah Price emerges as an orchestrator who holds secrets critical to both men.",
                 "2h 9m", R.drawable.poster_glass
             )
@@ -121,7 +121,7 @@ object DataDummy {
                 "78",
                 "Januari 3, 2019",
                 "Dean DeBlois",
-                "Animation, Family, Adventure",
+                "Animation, Family",
                 "As Hiccup fulfills his dream of creating a peaceful dragon utopia, Toothless’ discovery of an untamed, elusive mate draws the Night Fury away. When danger mounts at home and Hiccup’s reign as village chief is tested, both dragon and rider must make impossible decisions to save their kind.",
                 "1h 44m", R.drawable.poster_how_to_train
             )
@@ -134,7 +134,7 @@ object DataDummy {
                 "83",
                 "April 25, 2018",
                 "Joe Russo",
-                "Adventure, Action, Science Fiction",
+                "Adventure, Action",
                 "As the Avengers and their allies have continued to protect the world from threats too large for any one hero to handle, a new danger has emerged from the cosmic shadows: Thanos. A despot of intergalactic infamy, his goal is to collect all six Infinity Stones, artifacts of unimaginable power, and use them to inflict his twisted will on all of reality. Everything the Avengers have fought for has led up to this moment - the fate of Earth and existence itself has never been more uncertain.",
                 "2h 29m", R.drawable.poster_infinity_war
             )
@@ -147,7 +147,7 @@ object DataDummy {
                 "84",
                 "Desember 6, 2018",
                 "Rodney Rothman",
-                "Action, Adventure, Animation, Science Fiction, Comedy",
+                "Action, Adventure",
                 "Miles Morales is juggling his life between being a high school student and being a spider-man. When Wilson \"Kingpin\" Fisk uses a super collider, others from across the Spider-Verse are transported to this dimension.",
                 "1h 57m", R.drawable.poster_spiderman
             )
@@ -168,7 +168,7 @@ object DataDummy {
                 "65",
                 "Oktober 10, 2012",
                 "Greg Berlanti",
-                "Crime, Drama, Mystery, Action & Adventure",
+                "Crime, Drama",
                 "Spoiled billionaire playboy Oliver Queen is missing and presumed dead when his yacht is lost at sea. He returns five years later a changed man, determined to clean up the city as a hooded vigilante armed with a bow.",
                 "42m", R.drawable.poster_arrow
             )
@@ -181,7 +181,7 @@ object DataDummy {
                 "75",
                 "Februari 15, 2019",
                 "Jeremy Carver",
-                "Sci-Fi & Fantasy, Action & Adventure",
+                "Sci-Fi & Fantasy",
                 "The Doom Patrol’s members each suffered horrible accidents that gave them superhuman abilities — but also left them scarred and disfigured. Traumatized and downtrodden, the team found purpose through The Chief, who brought them together to investigate the weirdest phenomena in existence — and to protect Earth from what they find.",
                 "49m", R.drawable.poster_doom_patrol
             )
@@ -194,7 +194,7 @@ object DataDummy {
                 "81",
                 "April 26, 1989",
                 "Akira Toriyama",
-                "Sci-Fi & Fantasy, Animation, Comedy, Action & Adventure",
+                "Sci-Fi & Fantasy",
                 "Five years have passed since the fight with Piccolo Jr., and Goku now has a son, Gohan. The peace is interrupted when an alien named Raditz arrives on Earth in a spacecraft and tracks down Goku, revealing to him that that they are members of a near-extinct warrior race called the Saiyans.",
                 "26m", R.drawable.poster_dragon_ball
             )
@@ -207,7 +207,7 @@ object DataDummy {
                 "75",
                 "Oktober 12, 2009",
                 "Hiro Mashima",
-                "Action & Adventure, Animation, Comedy, Sci-Fi & Fantasy",
+                "Action & Adventure",
                 "Lucy is a 17-year-old girl, who wants to be a full-fledged mage. One day when visiting Harujion Town, she meets Natsu, a young man who gets sick easily by any type of transportation. But Natsu isn't just any ordinary kid, he's a member of one of the world's most infamous mage guilds: Fairy Tail.",
                 "25m", R.drawable.poster_fairytail
             )
@@ -233,7 +233,7 @@ object DataDummy {
                 "75",
                 "Oktober 7, 2014",
                 "Greg Berlanti",
-                "Drama, Sci-fi & Fantasy",
+                "Drama, Sci-fi",
                 "After a particle accelerator causes a freak storm, CSI Investigator Barry Allen is struck by lightning and falls into a coma. Months later he awakens with the power of super speed, granting him the ability to move through Central City like an unseen guardian angel. Though initially excited by his newfound powers, Barry is shocked to discover he is not the only meta-human who was created in the wake of the accelerator explosion -- and not everyone is using their new powers for good. Barry partners with S.T.A.R. Labs and dedicates his life to protect the innocent. For now, only a few close friends and associates know that Barry is literally the fastest man alive, but it wont be long before the world learns what Barry Allen has become...The Flash.",
                 "44m", R.drawable.poster_flash
             )
@@ -259,7 +259,7 @@ object DataDummy {
                 "64",
                 "Maret 17, 2017",
                 "Scott Buck",
-                "Action & Adventure, Drama, Sci-Fi & Fantasy",
+                "Action & Adventure",
                 "Danny Rand resurfaces 15 years after being presumed dead. Now, with the power of the Iron Fist, he seeks to reclaim his past and fulfill his destiny.",
                 "55m", R.drawable.poster_iron_fist
             )
@@ -298,7 +298,7 @@ object DataDummy {
                 "70",
                 "Oktober 26, 2015",
                 "Greg Berlanti",
-                "Action, Adventure, Drama, Science Fiction",
+                "Action, Adventure",
                 "Twenty-four-year-old Kara Zor-El, who was taken in by the Danvers family when she was 13 after being sent away from Krypton, must learn to embrace her powers after previously hiding them. The Danvers teach her to be careful with her powers, until she has to reveal them during an unexpected disaster, setting her on her journey of heroism.",
                 "42m", R.drawable.poster_supergirl
             )

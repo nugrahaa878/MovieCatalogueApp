@@ -3,15 +3,12 @@ package com.nugrahaa.moviecatalogue.view.movies
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.nugrahaa.moviecatalogue.R
 import com.nugrahaa.moviecatalogue.model.MovieEntity
-import kotlinx.android.synthetic.main.activity_detail.view.*
 import kotlinx.android.synthetic.main.items_movies.view.*
-import kotlinx.coroutines.GlobalScope
 
 class MoviesAdapter(private val callback: MoviesFragmentCallback): RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder>() {
 

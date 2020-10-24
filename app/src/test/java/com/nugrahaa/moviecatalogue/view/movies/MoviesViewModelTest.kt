@@ -20,4 +20,6 @@ class MoviesViewModelTest {
         assertNotNull(moviesEntities)
         assertEquals(11, moviesEntities.size)
     }
+
+
 }
