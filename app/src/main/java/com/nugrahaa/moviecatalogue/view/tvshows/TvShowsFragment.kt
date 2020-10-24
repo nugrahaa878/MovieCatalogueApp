@@ -28,7 +28,10 @@ class TvShowsFragment : Fragment(), TvShowsFragmentCallback {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         if (activity != null) {
-            viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[TvShowsViewModel::class.java]
+            viewModel = ViewModelProvider(
+                this,
+                ViewModelProvider.NewInstanceFactory()
+            )[TvShowsViewModel::class.java]
             val tvShows = viewModel.getTvShow()
 
             if (tvShows.isEmpty()) {

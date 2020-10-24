@@ -10,7 +10,8 @@ import com.nugrahaa.moviecatalogue.R
 import com.nugrahaa.moviecatalogue.model.MovieEntity
 import kotlinx.android.synthetic.main.items_movies.view.*
 
-class MoviesAdapter(private val callback: MoviesFragmentCallback): RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder>() {
+class MoviesAdapter(private val callback: MoviesFragmentCallback) :
+    RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder>() {
 
     private var listMovies = ArrayList<MovieEntity>()
 
@@ -35,7 +36,7 @@ class MoviesAdapter(private val callback: MoviesFragmentCallback): RecyclerView.
 
     override fun getItemCount(): Int = listMovies.size
 
-    inner class MoviesViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    inner class MoviesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(movie: MovieEntity) {
             with(itemView) {
                 tv_movie_title.text = movie.title
@@ -43,8 +44,10 @@ class MoviesAdapter(private val callback: MoviesFragmentCallback): RecyclerView.
                 tv_movie_description.text = movie.description
                 Glide.with(context)
                     .load(movie.poster)
-                    .apply(RequestOptions.placeholderOf(R.drawable.ic_loading)
-                        .error(R.drawable.ic_error))
+                    .apply(
+                        RequestOptions.placeholderOf(R.drawable.ic_loading)
+                            .error(R.drawable.ic_error)
+                    )
                     .into(img_poster_movies)
 
                 itemView.setOnClickListener {

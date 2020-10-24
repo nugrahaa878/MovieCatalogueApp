@@ -10,7 +10,8 @@ import com.nugrahaa.moviecatalogue.R
 import com.nugrahaa.moviecatalogue.model.TvShowEntity
 import kotlinx.android.synthetic.main.items_tvshow.view.*
 
-class TvShowsAdapter(private val callback: TvShowsFragmentCallback): RecyclerView.Adapter<TvShowsAdapter.TvShowsViewHolder>() {
+class TvShowsAdapter(private val callback: TvShowsFragmentCallback) :
+    RecyclerView.Adapter<TvShowsAdapter.TvShowsViewHolder>() {
 
     private var listTvShow = ArrayList<TvShowEntity>()
 
@@ -20,7 +21,10 @@ class TvShowsAdapter(private val callback: TvShowsFragmentCallback): RecyclerVie
         listTvShow.addAll(tvShow)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TvShowsAdapter.TvShowsViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): TvShowsAdapter.TvShowsViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.items_tvshow, parent, false)
         return TvShowsViewHolder(view)
     }
@@ -32,17 +36,19 @@ class TvShowsAdapter(private val callback: TvShowsFragmentCallback): RecyclerVie
 
     override fun getItemCount(): Int = listTvShow.size
 
-    inner class TvShowsViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    inner class TvShowsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(tvShow: TvShowEntity) {
             with(itemView) {
                 tv_tvshow_title.text = tvShow.title
                 tv_tvshow_description.text = tvShow.description
                 tv_tvshow_date.text = tvShow.date
                 Glide.with(context)
-                        .load(tvShow.poster)
-                        .apply(RequestOptions.placeholderOf(R.drawable.ic_loading)
-                                .error(R.drawable.ic_error))
-                        .into(img_poster_tvshow)
+                    .load(tvShow.poster)
+                    .apply(
+                        RequestOptions.placeholderOf(R.drawable.ic_loading)
+                            .error(R.drawable.ic_error)
+                    )
+                    .into(img_poster_tvshow)
 
                 itemView.setOnClickListener {
                     callback.onClickGotoDetail(tvShow)

@@ -21,7 +21,10 @@ class DetailActivity : AppCompatActivity() {
         val getType = intent.getStringExtra("TYPE")
         val getId = intent.getIntExtra("ID", -1)
 
-        viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[DetailActivityViewModel::class.java]
+        viewModel = ViewModelProvider(
+            this,
+            ViewModelProvider.NewInstanceFactory()
+        )[DetailActivityViewModel::class.java]
 
         if (getType == "movie") {
             val listMovie = viewModel.getMovie()

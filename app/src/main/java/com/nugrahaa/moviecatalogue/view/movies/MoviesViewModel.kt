@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.nugrahaa.moviecatalogue.model.MovieEntity
 import com.nugrahaa.moviecatalogue.utils.DataDummy
 
-class MoviesViewModel: ViewModel() {
+class MoviesViewModel : ViewModel() {
 
     fun getMovie(): List<MovieEntity> = DataDummy.generateDummyMovies()
 

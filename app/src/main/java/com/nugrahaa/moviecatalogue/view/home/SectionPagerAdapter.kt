@@ -9,7 +9,8 @@ import com.nugrahaa.moviecatalogue.R
 import com.nugrahaa.moviecatalogue.view.movies.MoviesFragment
 import com.nugrahaa.moviecatalogue.view.tvshows.TvShowsFragment
 
-class SectionPagerAdapter(private val mContext: Context, fm: FragmentManager): FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+class SectionPagerAdapter(private val mContext: Context, fm: FragmentManager) :
+    FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     companion object {
         @StringRes
@@ -25,6 +26,7 @@ class SectionPagerAdapter(private val mContext: Context, fm: FragmentManager): F
             else -> Fragment()
         }
 
-    override fun getPageTitle(position: Int): CharSequence? = mContext.resources.getString(TAB_TITLES[position])
+    override fun getPageTitle(position: Int): CharSequence? =
+        mContext.resources.getString(TAB_TITLES[position])
 
 }
