@@ -1,6 +1,5 @@
 package com.nugrahaa.moviecatalogue.view.movies
 
-import com.nugrahaa.moviecatalogue.model.MovieEntity
 import org.junit.Test
 
 import org.junit.Assert.*

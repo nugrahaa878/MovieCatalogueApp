@@ -1,8 +1,8 @@
 package com.nugrahaa.moviecatalogue.view.detail
 
 import androidx.lifecycle.ViewModel
-import com.nugrahaa.moviecatalogue.model.MovieEntity
-import com.nugrahaa.moviecatalogue.model.TvShowEntity
+import com.nugrahaa.moviecatalogue.model.offline.MovieEntity
+import com.nugrahaa.moviecatalogue.model.offline.TvShowEntity
 import com.nugrahaa.moviecatalogue.utils.DataDummy
 
 class DetailActivityViewModel : ViewModel() {

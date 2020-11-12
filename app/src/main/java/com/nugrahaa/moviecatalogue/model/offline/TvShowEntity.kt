@@ -1,10 +1,10 @@
-package com.nugrahaa.moviecatalogue.model
+package com.nugrahaa.moviecatalogue.model.offline
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class MovieEntity(
+data class TvShowEntity(
     var id: Int,
     var title: String,
     var userscore: String,

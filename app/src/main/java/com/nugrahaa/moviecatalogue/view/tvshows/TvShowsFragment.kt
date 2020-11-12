@@ -6,20 +6,29 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.nugrahaa.moviecatalogue.R
-import com.nugrahaa.moviecatalogue.model.TvShowEntity
+import com.nugrahaa.moviecatalogue.model.online.Movie
+import com.nugrahaa.moviecatalogue.model.online.ResponseTvShow
+import com.nugrahaa.moviecatalogue.model.online.TVShow
 import com.nugrahaa.moviecatalogue.view.detail.DetailActivity
+import com.nugrahaa.moviecatalogue.view.movies.MoviesAdapter
+import kotlinx.android.synthetic.main.fragment_movies.*
 import kotlinx.android.synthetic.main.fragment_tv_shows.*
+import kotlinx.android.synthetic.main.fragment_tv_shows.img_empty
 
 class TvShowsFragment : Fragment(), TvShowsFragmentCallback {
 
     private lateinit var viewModel: TvShowsViewModel
+    private lateinit var rvTvShow: RecyclerView
+    private lateinit var listTvShowAdapter: TvShowsAdapter
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_tv_shows, container, false)
@@ -29,22 +38,28 @@ class TvShowsFragment : Fragment(), TvShowsFragmentCallback {
         super.onActivityCreated(savedInstanceState)
         if (activity != null) {
             viewModel = ViewModelProvider(
-                this,
-                ViewModelProvider.NewInstanceFactory()
+                    this,
+                    ViewModelProvider.NewInstanceFactory()
             )[TvShowsViewModel::class.java]
-            val tvShows = viewModel.getTvShow()
 
-            if (tvShows.isEmpty()) {
-                showTvShowsEmptyStatus()
-            }
-
-            val tvShowAdapter = TvShowsAdapter(this)
-            tvShowAdapter.setTvShows(tvShows)
-
-            rv_tvshow.layoutManager = LinearLayoutManager(context)
-            rv_tvshow.setHasFixedSize(true)
-            rv_tvshow.adapter = tvShowAdapter
+            viewModel.getTvShowRepository()
+            attachObserver()
         }
+    }
+
+    private fun attachObserver() {
+        viewModel.responseTvShow.observe(viewLifecycleOwner, Observer {
+            showData(it)
+        })
+    }
+
+    private fun showData(it: ResponseTvShow?) {
+        rvTvShow = rv_tvshow
+        rvTvShow.setHasFixedSize(true)
+        rvTvShow.layoutManager = LinearLayoutManager(context)
+
+        listTvShowAdapter = TvShowsAdapter(it?.results as ArrayList<TVShow>, this)
+        rvTvShow.adapter = listTvShowAdapter
     }
 
     private fun showTvShowsEmptyStatus() {
@@ -52,7 +67,7 @@ class TvShowsFragment : Fragment(), TvShowsFragmentCallback {
         img_empty.visibility = View.VISIBLE
     }
 
-    override fun onClickGotoDetail(tvShowEntity: TvShowEntity) {
+    override fun onClickGotoDetail(tvShowEntity: TVShow) {
         val mIntent = Intent(context, DetailActivity::class.java)
         mIntent.putExtra("TYPE", "tvshow")
         mIntent.putExtra("ID", tvShowEntity.id)
