@@ -3,7 +3,6 @@ package com.nugrahaa.moviecatalogue.network
 import com.nugrahaa.moviecatalogue.model.online.ResponseMovie
 import com.nugrahaa.moviecatalogue.model.online.ResponseTvShow
 import io.reactivex.rxjava3.core.Flowable
-import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
 

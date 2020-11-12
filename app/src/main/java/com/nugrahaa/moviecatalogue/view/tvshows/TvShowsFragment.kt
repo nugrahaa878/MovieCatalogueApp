@@ -11,12 +11,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.nugrahaa.moviecatalogue.R
-import com.nugrahaa.moviecatalogue.model.online.Movie
 import com.nugrahaa.moviecatalogue.model.online.ResponseTvShow
 import com.nugrahaa.moviecatalogue.model.online.TVShow
 import com.nugrahaa.moviecatalogue.view.detail.DetailActivity
-import com.nugrahaa.moviecatalogue.view.movies.MoviesAdapter
-import kotlinx.android.synthetic.main.fragment_movies.*
 import kotlinx.android.synthetic.main.fragment_tv_shows.*
 import kotlinx.android.synthetic.main.fragment_tv_shows.img_empty
 
@@ -60,11 +57,6 @@ class TvShowsFragment : Fragment(), TvShowsFragmentCallback {
 
         listTvShowAdapter = TvShowsAdapter(it?.results as ArrayList<TVShow>, this)
         rvTvShow.adapter = listTvShowAdapter
-    }
-
-    private fun showTvShowsEmptyStatus() {
-        rv_tvshow.visibility = View.GONE
-        img_empty.visibility = View.VISIBLE
     }
 
     override fun onClickGotoDetail(tvShowEntity: TVShow) {

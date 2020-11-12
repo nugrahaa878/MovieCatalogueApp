@@ -2,7 +2,6 @@ package com.nugrahaa.moviecatalogue.view.movies
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +11,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.nugrahaa.moviecatalogue.R
-import com.nugrahaa.moviecatalogue.model.offline.MovieEntity
 import com.nugrahaa.moviecatalogue.model.online.Movie
 import com.nugrahaa.moviecatalogue.model.online.ResponseMovie
 import com.nugrahaa.moviecatalogue.view.detail.DetailActivity
