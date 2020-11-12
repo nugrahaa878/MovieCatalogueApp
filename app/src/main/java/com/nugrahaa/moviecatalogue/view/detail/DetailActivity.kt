@@ -2,12 +2,13 @@ package com.nugrahaa.moviecatalogue.view.detail
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.nugrahaa.moviecatalogue.R
-import com.nugrahaa.moviecatalogue.model.offline.MovieEntity
-import com.nugrahaa.moviecatalogue.model.offline.TvShowEntity
+import com.nugrahaa.moviecatalogue.model.online.Movie
+import com.nugrahaa.moviecatalogue.model.online.TVShow
 import kotlinx.android.synthetic.main.activity_detail.*
 
 class DetailActivity : AppCompatActivity() {
@@ -27,66 +28,71 @@ class DetailActivity : AppCompatActivity() {
         )[DetailActivityViewModel::class.java]
 
         if (getType == "movie") {
-            val listMovie = viewModel.getMovie()
-            val movie = viewModel.getMovieById(getId, listMovie as ArrayList)
+            viewModel.getMovieByIdRepository(getId.toString())
+            attachObserver()
             supportActionBar?.title = "About Movie"
-            addMovieToView(movie)
         } else if (getType == "tvshow") {
-            val listTvShow = viewModel.getTvShow()
-            val tvShow = viewModel.getTvShowById(getId, listTvShow as ArrayList)
-            supportActionBar?.title = "About TvShow"
-            addTvShowToView(tvShow)
+            viewModel.getTvShowByIdRepository(getId.toString())
+            attachObserver()
+            supportActionBar?.title = "About TV Show"
         }
 
     }
 
-    private fun addMovieToView(movieEntity: MovieEntity) {
-        tv_title_detail.text = movieEntity.title
-        tv_date_detail.text = movieEntity.date
-        tv_duration_detail.text = movieEntity.duration
-        tv_genre_detail.text = movieEntity.genre
-        tv_userscore_detail.text = movieEntity.userscore
-        tv_description_detail.text = movieEntity.description
-        tv_director_detail.text = movieEntity.director
+    private fun attachObserver() {
+        viewModel.responseDetailMovie.observe(this, Observer {
+            addMovieToView(it)
+        })
+        viewModel.responseDetailTvShow.observe(this, Observer {
+            addTvShowToView(it)
+        })
+    }
+
+    private fun addMovieToView(movie: Movie) {
+        tv_title_detail.text = movie.title
+        tv_date_detail.text = movie.releaseDate
+        tv_userscore_detail.text = (movie.voteAverage?.toInt()?.times(100)).toString()
+        tv_description_detail.text = movie.overview
 
         Glide.with(this)
-            .load(movieEntity.poster)
+            .load("https://image.tmdb.org/t/p/w500" + movie.posterPath)
             .apply(
                 RequestOptions.placeholderOf(R.drawable.ic_loading)
                     .error(R.drawable.ic_error)
             )
             .into(img_detail)
 
-        val userScore = movieEntity.userscore.toFloat()
-        circularProgressBar.apply {
-            progress = userScore
-            setProgressWithAnimation(userScore, 10000)
-            progressMax = 100f
+        val userScore = (movie.voteAverage?.toInt()?.times(10))?.toFloat()
+        if (userScore != null) {
+            circularProgressBar.apply {
+                progress = userScore
+                setProgressWithAnimation(userScore, 10000)
+                progressMax = 100f
+            }
         }
     }
 
-    private fun addTvShowToView(tvShowEntity: TvShowEntity) {
-        tv_title_detail.text = tvShowEntity.title
-        tv_date_detail.text = tvShowEntity.date
-        tv_duration_detail.text = tvShowEntity.duration
-        tv_genre_detail.text = tvShowEntity.genre
-        tv_userscore_detail.text = tvShowEntity.userscore
-        tv_description_detail.text = tvShowEntity.description
-        tv_director_detail.text = tvShowEntity.director
+    private fun addTvShowToView(tvShow: TVShow) {
+        tv_title_detail.text = tvShow.name
+        tv_date_detail.text = tvShow.firstAirDate
+        tv_userscore_detail.text = tvShow.voteCount.toString()
+        tv_description_detail.text = tvShow.overview
 
         Glide.with(this)
-            .load(tvShowEntity.poster)
+            .load("https://image.tmdb.org/t/p/w500" + tvShow.posterPath)
             .apply(
                 RequestOptions.placeholderOf(R.drawable.ic_loading)
                     .error(R.drawable.ic_error)
             )
             .into(img_detail)
 
-        val userScore = tvShowEntity.userscore.toFloat()
-        circularProgressBar.apply {
-            progress = userScore
-            setProgressWithAnimation(userScore, 10000)
-            progressMax = 100f
+        val userScore = (tvShow.voteAverage?.toInt()?.times(10))?.toFloat()
+        if (userScore != null) {
+            circularProgressBar.apply {
+                progress = userScore
+                setProgressWithAnimation(userScore, 10000)
+                progressMax = 100f
+            }
         }
     }
 }
