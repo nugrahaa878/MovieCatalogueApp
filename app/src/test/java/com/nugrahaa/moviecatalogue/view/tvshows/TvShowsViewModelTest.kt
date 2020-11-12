@@ -1,5 +1,6 @@
 package com.nugrahaa.moviecatalogue.view.tvshows
 
+import com.nugrahaa.moviecatalogue.model.MovieEntity
 import org.junit.Before
 import org.junit.Test
 
