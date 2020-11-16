@@ -23,11 +23,11 @@ interface ApiService {
     @GET("movie/{id}")
     fun getMovieById(@Path("id") id: String,
                      @Query("api_key") api: String,
-                     @Query("language") language: String): Single<Movie>
+                     @Query("language") language: String): Flowable<Movie>
 
     @GET("tv/{id}")
     fun getTvShowById(@Path("id") id: String,
                       @Query("api_key") api: String,
-                      @Query("language") language: String): Single<TVShow>
+                      @Query("language") language: String): Flowable<TVShow>
 
 }

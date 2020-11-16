@@ -9,6 +9,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.nugrahaa.moviecatalogue.R
 import com.nugrahaa.moviecatalogue.model.remote.response.Movie
 import com.nugrahaa.moviecatalogue.model.remote.response.TVShow
+import com.nugrahaa.moviecatalogue.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.activity_detail.*
 
 class DetailActivity : AppCompatActivity() {
@@ -21,32 +22,33 @@ class DetailActivity : AppCompatActivity() {
 
         val getType = intent.getStringExtra("TYPE")
         val getId = intent.getIntExtra("ID", -1)
-//
-//        viewModel = ViewModelProvider(
-//            this,
-//            ViewModelProvider.NewInstanceFactory()
-//        )[DetailActivityViewModel::class.java]
-//
-//        if (getType == "movie") {
-//            viewModel.getMovieByIdRepository(getId.toString())
-//            attachObserver()
-//            supportActionBar?.title = "About Movie"
-//        } else if (getType == "tvshow") {
-//            viewModel.getTvShowByIdRepository(getId.toString())
-//            attachObserver()
-//            supportActionBar?.title = "About TV Show"
-//        }
+
+        val factory = ViewModelFactory.getInstance(this)
+        viewModel = ViewModelProvider(
+            this,
+            factory
+        )[DetailActivityViewModel::class.java]
+
+        if (getType == "movie") {
+            viewModel.getMoviesById(getId.toString())
+            attachObserver(getId.toString())
+            supportActionBar?.title = "About Movie"
+        } else if (getType == "tvshow") {
+            viewModel.getTVShowById(getId.toString())
+            attachObserver(getId.toString())
+            supportActionBar?.title = "About TV Show"
+        }
 
     }
 
-//    private fun attachObserver() {
-//        viewModel.responseDetailMovie.observe(this, Observer {
-//            addMovieToView(it)
-//        })
-//        viewModel.responseDetailTvShow.observe(this, Observer {
-//            addTvShowToView(it)
-//        })
-//    }
+    private fun attachObserver(id: String) {
+        viewModel.getMoviesById(id).observe(this, Observer {
+            addMovieToView(it)
+        })
+        viewModel.getTVShowById(id).observe(this, Observer {
+            addTvShowToView(it)
+        })
+    }
 
     private fun addMovieToView(movie: Movie) {
         tv_title_detail.text = movie.title

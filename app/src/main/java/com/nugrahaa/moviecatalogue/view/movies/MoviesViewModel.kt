@@ -12,4 +12,5 @@ class MoviesViewModel(private val repository: Repository) : ViewModel() {
     fun getMovies(): LiveData<ArrayList<Movie?>> {
         return repository.getAllMovies()
     }
+
 }

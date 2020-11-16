@@ -29,7 +29,7 @@ class Repository private constructor(private val remoteDataSource: RemoteDataSou
         remoteDataSource.getMovies()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe {
+            .subscribe ({
                 val moviesList = ArrayList<Movie?>()
                 if (it.results != null) {
                     for (item in it.results) {
@@ -37,7 +37,9 @@ class Repository private constructor(private val remoteDataSource: RemoteDataSou
                     }
                 }
                 moviesResults.postValue(moviesList)
-            }
+            }, {
+                it.printStackTrace()
+            })
         return moviesResults
     }
 
@@ -46,7 +48,7 @@ class Repository private constructor(private val remoteDataSource: RemoteDataSou
         remoteDataSource.getTvShow()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe{
+            .subscribe ({
                 val tvShowList = ArrayList<TVShow?>()
                 if (it.results != null) {
                     for (item in it.results) {
@@ -54,33 +56,35 @@ class Repository private constructor(private val remoteDataSource: RemoteDataSou
                     }
                 }
                 tvShowResults.postValue(tvShowList)
-            }
+            }, {
+                it.printStackTrace()
+            })
         return tvShowResults
     }
 
-    fun getMoviesById(id: String, responseHandler: (Movie) -> Unit, errorHandler: (Throwable) -> Unit) {
-        ApiConfig.getApiService().getMovieById(id, "b64d761def5c00e40e6a36e0032741bf", "en-US")
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-                    responseHandler(it)
-                }, {
-                    errorHandler(it)
-                })
+    override fun getMoviesById(id: String): LiveData<Movie> {
+        var movieResult = MutableLiveData<Movie>()
+        remoteDataSource.getMoviesById(id)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe ({
+                movieResult.postValue(it)
+            }, {
+                it.printStackTrace()
+            })
+        return movieResult
     }
 
-    fun getTvShowById(id: String, responseHandler: (TVShow) -> Unit, errorHandler: (Throwable) -> Unit) {
-        ApiConfig.getApiService().getTvShowById(id, "b64d761def5c00e40e6a36e0032741bf", "en-US")
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-                    responseHandler(it)
-                }, {
-                    errorHandler(it)
-                })
+    override fun getTVShowById(id: String): LiveData<TVShow> {
+        var tvShowResult = MutableLiveData<TVShow>()
+        remoteDataSource.getTVShowById(id)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe ({
+                tvShowResult.postValue(it)
+            }, {
+                it.printStackTrace()
+            })
+        return tvShowResult
     }
-
-
-
-
 }

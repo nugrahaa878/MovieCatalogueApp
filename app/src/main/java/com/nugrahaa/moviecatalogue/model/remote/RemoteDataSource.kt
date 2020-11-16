@@ -3,9 +3,11 @@ package com.nugrahaa.moviecatalogue.model.remote
 import com.nugrahaa.moviecatalogue.model.remote.response.Movie
 import com.nugrahaa.moviecatalogue.model.remote.response.ResponseMovie
 import com.nugrahaa.moviecatalogue.model.remote.response.ResponseTvShow
+import com.nugrahaa.moviecatalogue.model.remote.response.TVShow
 import com.nugrahaa.moviecatalogue.network.ApiConfig
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
+import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 class RemoteDataSource {
@@ -28,4 +30,11 @@ class RemoteDataSource {
         return ApiConfig.getApiService().getTvShowData("b64d761def5c00e40e6a36e0032741bf", "en-US")
     }
 
+    fun getMoviesById(id: String): Flowable<Movie> {
+        return ApiConfig.getApiService().getMovieById(id, "b64d761def5c00e40e6a36e0032741bf", "en-US")
+    }
+
+    fun getTVShowById(id: String): Flowable<TVShow> {
+        return ApiConfig.getApiService().getTvShowById(id, "b64d761def5c00e40e6a36e0032741bf", "en-US")
+    }
 }

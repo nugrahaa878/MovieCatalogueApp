@@ -11,4 +11,8 @@ interface DataSource {
 
     fun getAllTvShow(): LiveData<ArrayList<TVShow?>>
 
+    fun getMoviesById(id: String): LiveData<Movie>
+
+    fun getTVShowById(id: String): LiveData<TVShow>
+
 }
