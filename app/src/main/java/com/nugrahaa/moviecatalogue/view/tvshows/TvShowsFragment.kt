@@ -11,11 +11,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.nugrahaa.moviecatalogue.R
-import com.nugrahaa.moviecatalogue.model.online.ResponseTvShow
-import com.nugrahaa.moviecatalogue.model.online.TVShow
+import com.nugrahaa.moviecatalogue.model.remote.response.ResponseTvShow
+import com.nugrahaa.moviecatalogue.model.remote.response.TVShow
 import com.nugrahaa.moviecatalogue.view.detail.DetailActivity
+import com.nugrahaa.moviecatalogue.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.fragment_tv_shows.*
-import kotlinx.android.synthetic.main.fragment_tv_shows.img_empty
 
 class TvShowsFragment : Fragment(), TvShowsFragmentCallback {
 
@@ -34,35 +34,37 @@ class TvShowsFragment : Fragment(), TvShowsFragmentCallback {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         if (activity != null) {
+
+            val factory = ViewModelFactory.getInstance(requireActivity())
             viewModel = ViewModelProvider(
                     this,
-                    ViewModelProvider.NewInstanceFactory()
+                    factory
             )[TvShowsViewModel::class.java]
 
-            viewModel.getTvShowRepository()
+            viewModel.getTvShow()
             attachObserver()
         }
     }
 
     private fun attachObserver() {
-        viewModel.responseTvShow.observe(viewLifecycleOwner, Observer {
+        viewModel.getTvShow().observe(viewLifecycleOwner, Observer {
             showData(it)
         })
     }
 
-    private fun showData(it: ResponseTvShow?) {
+    private fun showData(it: ArrayList<TVShow?>) {
         rvTvShow = rv_tvshow
         rvTvShow.setHasFixedSize(true)
         rvTvShow.layoutManager = LinearLayoutManager(context)
 
-        listTvShowAdapter = TvShowsAdapter(it?.results as ArrayList<TVShow>, this)
+        listTvShowAdapter = TvShowsAdapter(it, this)
         rvTvShow.adapter = listTvShowAdapter
     }
 
-    override fun onClickGotoDetail(tvShowEntity: TVShow) {
+    override fun onClickGotoDetail(tvShowEntity: TVShow?) {
         val mIntent = Intent(context, DetailActivity::class.java)
         mIntent.putExtra("TYPE", "tvshow")
-        mIntent.putExtra("ID", tvShowEntity.id)
+        mIntent.putExtra("ID", tvShowEntity?.id)
         startActivity(mIntent)
     }
 

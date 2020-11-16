@@ -1,22 +1,16 @@
 package com.nugrahaa.moviecatalogue.view.tvshows
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.nugrahaa.moviecatalogue.model.online.ResponseTvShow
-import com.nugrahaa.moviecatalogue.repository.Repository
+import com.nugrahaa.moviecatalogue.model.remote.response.ResponseTvShow
+import com.nugrahaa.moviecatalogue.model.Repository
+import com.nugrahaa.moviecatalogue.model.remote.response.TVShow
 
-class TvShowsViewModel : ViewModel() {
+class TvShowsViewModel(private val repository: Repository) : ViewModel() {
 
-    private val repository = Repository()
-    var responseTvShow = MutableLiveData<ResponseTvShow>()
-    var isError = MutableLiveData<Throwable>()
-
-    fun getTvShowRepository() {
-        repository.getTvShow({
-            responseTvShow.value = it
-        }, {
-            isError.value = it
-        })
+    fun getTvShow(): LiveData<ArrayList<TVShow?>> {
+        return repository.getAllTvShow()
     }
 
 }

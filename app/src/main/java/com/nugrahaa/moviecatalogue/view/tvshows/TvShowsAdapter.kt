@@ -7,10 +7,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.nugrahaa.moviecatalogue.R
-import com.nugrahaa.moviecatalogue.model.online.TVShow
+import com.nugrahaa.moviecatalogue.model.remote.response.TVShow
 import kotlinx.android.synthetic.main.items_tvshow.view.*
 
-class TvShowsAdapter(private val listTvShow: ArrayList<TVShow>,
+class TvShowsAdapter(private val listTvShow: ArrayList<TVShow?>,
                      private val callback: TvShowsFragmentCallback) :
         RecyclerView.Adapter<TvShowsAdapter.TvShowsViewHolder>() {
 
@@ -30,13 +30,13 @@ class TvShowsAdapter(private val listTvShow: ArrayList<TVShow>,
     override fun getItemCount(): Int = listTvShow.size
 
     inner class TvShowsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(tvShow: TVShow) {
+        fun bind(tvShow: TVShow?) {
             with(itemView) {
-                tv_tvshow_title.text = tvShow.originalName
-                tv_tvshow_description.text = tvShow.overview
-                tv_tvshow_date.text = tvShow.firstAirDate
+                tv_tvshow_title.text = tvShow?.originalName
+                tv_tvshow_description.text = tvShow?.overview
+                tv_tvshow_date.text = tvShow?.firstAirDate
                 Glide.with(context)
-                        .load("https://image.tmdb.org/t/p/w500" + tvShow.posterPath)
+                        .load("https://image.tmdb.org/t/p/w500" + tvShow?.posterPath)
                         .apply(
                                 RequestOptions.placeholderOf(R.drawable.ic_loading)
                                         .error(R.drawable.ic_error)

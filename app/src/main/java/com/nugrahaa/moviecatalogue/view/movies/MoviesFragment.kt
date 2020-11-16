@@ -11,9 +11,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.nugrahaa.moviecatalogue.R
-import com.nugrahaa.moviecatalogue.model.online.Movie
-import com.nugrahaa.moviecatalogue.model.online.ResponseMovie
+import com.nugrahaa.moviecatalogue.model.remote.response.Movie
+import com.nugrahaa.moviecatalogue.model.remote.response.ResponseMovie
 import com.nugrahaa.moviecatalogue.view.detail.DetailActivity
+import com.nugrahaa.moviecatalogue.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.fragment_movies.*
 
 class MoviesFragment : Fragment(), MoviesFragmentCallback {
@@ -33,35 +34,36 @@ class MoviesFragment : Fragment(), MoviesFragmentCallback {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         if (activity != null) {
+            val factory = ViewModelFactory.getInstance(requireActivity())
             viewModel = ViewModelProvider(
                     this,
-                    ViewModelProvider.NewInstanceFactory()
+                    factory
             )[MoviesViewModel::class.java]
 
-            viewModel.getMovieRepository()
+            viewModel.getMovies()
             attachObserver()
         }
     }
 
     private fun attachObserver() {
-        viewModel.responseMovie.observe(viewLifecycleOwner, Observer {
+        viewModel.getMovies().observe(viewLifecycleOwner, Observer {
             showData(it)
         })
     }
 
-    private fun showData(it: ResponseMovie?) {
+    private fun showData(it: ArrayList<Movie?>) {
         rvMovie = rv_movies
         rvMovie.setHasFixedSize(true)
         rvMovie.layoutManager = LinearLayoutManager(context)
 
-        listMovieAdapter = MoviesAdapter(it?.results as ArrayList<Movie>, this)
+        listMovieAdapter = MoviesAdapter(it, this)
         rvMovie.adapter = listMovieAdapter
     }
 
-    override fun onClickGotoDetail(movie: Movie) {
+    override fun onClickGotoDetail(movie: Movie?) {
         val mIntent = Intent(context, DetailActivity::class.java)
         mIntent.putExtra("TYPE", "movie")
-        mIntent.putExtra("ID", movie.id)
+        mIntent.putExtra("ID", movie?.id)
         startActivity(mIntent)
     }
 

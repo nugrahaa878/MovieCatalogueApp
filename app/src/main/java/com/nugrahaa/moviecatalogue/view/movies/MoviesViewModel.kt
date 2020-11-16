@@ -1,21 +1,15 @@
 package com.nugrahaa.moviecatalogue.view.movies
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.nugrahaa.moviecatalogue.model.online.ResponseMovie
-import com.nugrahaa.moviecatalogue.repository.Repository
+import com.nugrahaa.moviecatalogue.model.remote.response.ResponseMovie
+import com.nugrahaa.moviecatalogue.model.Repository
+import com.nugrahaa.moviecatalogue.model.remote.response.Movie
 
-class MoviesViewModel : ViewModel() {
+class MoviesViewModel(private val repository: Repository) : ViewModel() {
 
-    private val repository = Repository()
-    var responseMovie = MutableLiveData<ResponseMovie>()
-    var isError = MutableLiveData<Throwable>()
-
-    fun getMovieRepository() {
-        repository.getMovies({
-            responseMovie.value = it
-        }, {
-            isError.value = it
-        })
+    fun getMovies(): LiveData<ArrayList<Movie?>> {
+        return repository.getAllMovies()
     }
 }

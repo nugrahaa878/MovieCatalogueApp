@@ -7,10 +7,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.nugrahaa.moviecatalogue.R
-import com.nugrahaa.moviecatalogue.model.online.Movie
+import com.nugrahaa.moviecatalogue.model.remote.response.Movie
 import kotlinx.android.synthetic.main.items_movies.view.*
 
-class MoviesAdapter(private val listMovie: ArrayList<Movie>,
+class MoviesAdapter(private val listMovie: ArrayList<Movie?>,
                     private val callback: MoviesFragmentCallback) :
         RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder>() {
 
@@ -30,13 +30,13 @@ class MoviesAdapter(private val listMovie: ArrayList<Movie>,
     override fun getItemCount(): Int = listMovie.size
 
     inner class MoviesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(movie: Movie) {
+        fun bind(movie: Movie?) {
             with(itemView) {
-                tv_movie_title.text = movie.originalTitle
-                tv_movie_date.text = movie.releaseDate
-                tv_movie_description.text = movie.overview
+                tv_movie_title.text = movie?.originalTitle
+                tv_movie_date.text = movie?.releaseDate
+                tv_movie_description.text = movie?.overview
                 Glide.with(context)
-                        .load("https://image.tmdb.org/t/p/w500" + movie.posterPath)
+                        .load("https://image.tmdb.org/t/p/w500" + movie?.posterPath)
                         .apply(
                                 RequestOptions.placeholderOf(R.drawable.ic_loading)
                                         .error(R.drawable.ic_error)

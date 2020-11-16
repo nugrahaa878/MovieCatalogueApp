@@ -1,8 +1,8 @@
 package com.nugrahaa.moviecatalogue.utils
 
 import com.nugrahaa.moviecatalogue.R
-import com.nugrahaa.moviecatalogue.model.offline.MovieEntity
-import com.nugrahaa.moviecatalogue.model.offline.TvShowEntity
+import com.nugrahaa.moviecatalogue.model.local.MovieEntity
+import com.nugrahaa.moviecatalogue.model.local.TvShowEntity
 
 object DataDummy {
 

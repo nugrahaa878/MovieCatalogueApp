@@ -1,9 +1,9 @@
 package com.nugrahaa.moviecatalogue.network
 
-import com.nugrahaa.moviecatalogue.model.online.Movie
-import com.nugrahaa.moviecatalogue.model.online.ResponseMovie
-import com.nugrahaa.moviecatalogue.model.online.ResponseTvShow
-import com.nugrahaa.moviecatalogue.model.online.TVShow
+import com.nugrahaa.moviecatalogue.model.remote.response.Movie
+import com.nugrahaa.moviecatalogue.model.remote.response.ResponseMovie
+import com.nugrahaa.moviecatalogue.model.remote.response.ResponseTvShow
+import com.nugrahaa.moviecatalogue.model.remote.response.TVShow
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET

@@ -1,4 +1,4 @@
-package com.nugrahaa.moviecatalogue.model.online
+package com.nugrahaa.moviecatalogue.model.remote.response
 
 import com.google.gson.annotations.SerializedName
 
