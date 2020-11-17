@@ -33,6 +33,7 @@ class MoviesFragment : Fragment(), MoviesFragmentCallback {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        movie_progress.visibility = View.VISIBLE
         if (activity != null) {
             val factory = ViewModelFactory.getInstance(requireActivity())
             viewModel = ViewModelProvider(
@@ -47,6 +48,7 @@ class MoviesFragment : Fragment(), MoviesFragmentCallback {
 
     private fun attachObserver() {
         viewModel.getMovies().observe(viewLifecycleOwner, Observer {
+            movie_progress.visibility = View.GONE
             showData(it)
         })
     }

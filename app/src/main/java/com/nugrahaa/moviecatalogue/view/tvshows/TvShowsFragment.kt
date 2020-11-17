@@ -33,8 +33,8 @@ class TvShowsFragment : Fragment(), TvShowsFragmentCallback {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        tv_progress.visibility = View.VISIBLE
         if (activity != null) {
-
             val factory = ViewModelFactory.getInstance(requireActivity())
             viewModel = ViewModelProvider(
                     this,
@@ -48,6 +48,7 @@ class TvShowsFragment : Fragment(), TvShowsFragmentCallback {
 
     private fun attachObserver() {
         viewModel.getTvShow().observe(viewLifecycleOwner, Observer {
+            tv_progress.visibility = View.GONE
             showData(it)
         })
     }

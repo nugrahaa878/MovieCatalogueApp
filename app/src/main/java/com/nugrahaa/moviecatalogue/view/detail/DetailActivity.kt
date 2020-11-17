@@ -2,6 +2,7 @@ package com.nugrahaa.moviecatalogue.view.detail
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
@@ -43,9 +44,11 @@ class DetailActivity : AppCompatActivity() {
 
     private fun attachObserver(id: String) {
         viewModel.getMoviesById(id).observe(this, Observer {
+            detail_progress.visibility = View.GONE
             addMovieToView(it)
         })
         viewModel.getTVShowById(id).observe(this, Observer {
+            detail_progress.visibility = View.GONE
             addTvShowToView(it)
         })
     }
