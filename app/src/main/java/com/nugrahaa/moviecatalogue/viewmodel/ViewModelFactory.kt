@@ -9,7 +9,8 @@ import com.nugrahaa.moviecatalogue.view.detail.DetailActivityViewModel
 import com.nugrahaa.moviecatalogue.view.movies.MoviesViewModel
 import com.nugrahaa.moviecatalogue.view.tvshows.TvShowsViewModel
 
-class ViewModelFactory private constructor(private val mRepository: Repository): ViewModelProvider.NewInstanceFactory(){
+class ViewModelFactory private constructor(private val mRepository: Repository) :
+    ViewModelProvider.NewInstanceFactory() {
 
     companion object {
         @Volatile

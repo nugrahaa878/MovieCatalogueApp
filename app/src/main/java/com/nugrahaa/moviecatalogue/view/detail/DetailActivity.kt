@@ -10,6 +10,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.nugrahaa.moviecatalogue.R
 import com.nugrahaa.moviecatalogue.data.remote.response.Movie
 import com.nugrahaa.moviecatalogue.data.remote.response.TVShow
+import com.nugrahaa.moviecatalogue.utils.EspressoIdlingResource
 import com.nugrahaa.moviecatalogue.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.activity_detail.*
 
@@ -46,10 +47,12 @@ class DetailActivity : AppCompatActivity() {
         viewModel.getMoviesById(id).observe(this, Observer {
             detail_progress.visibility = View.GONE
             addMovieToView(it)
+            EspressoIdlingResource.decrement()
         })
         viewModel.getTVShowById(id).observe(this, Observer {
             detail_progress.visibility = View.GONE
             addTvShowToView(it)
+            EspressoIdlingResource.decrement()
         })
     }
 

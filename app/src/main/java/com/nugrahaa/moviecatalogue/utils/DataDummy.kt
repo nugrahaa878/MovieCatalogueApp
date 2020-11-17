@@ -458,7 +458,7 @@ object DataDummy {
         return ResponseMovie(
             2,
             2,
-            DataDummy.generateDummyMoviesAPI(),
+            generateDummyMoviesAPI(),
             10
         )
     }
@@ -467,7 +467,7 @@ object DataDummy {
         return ResponseTvShow(
             3,
             3,
-            DataDummy.generateDummyTvShowAPI(),
+            generateDummyTvShowAPI(),
             10
         )
     }

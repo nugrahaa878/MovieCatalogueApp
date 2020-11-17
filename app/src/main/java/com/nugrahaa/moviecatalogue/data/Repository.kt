@@ -5,19 +5,20 @@ import androidx.lifecycle.MutableLiveData
 import com.nugrahaa.moviecatalogue.data.remote.RemoteDataSource
 import com.nugrahaa.moviecatalogue.data.remote.response.Movie
 import com.nugrahaa.moviecatalogue.data.remote.response.TVShow
+import com.nugrahaa.moviecatalogue.utils.EspressoIdlingResource
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 
-class Repository private constructor(private val remoteDataSource: RemoteDataSource): DataSource {
+class Repository private constructor(private val remoteDataSource: RemoteDataSource) : DataSource {
 
     companion object {
         @Volatile
         private var instance: Repository? = null
 
         fun getInstance(remoteData: RemoteDataSource): Repository =
-                instance ?: synchronized(this) {
-                    instance ?: Repository(remoteData)
-                }
+            instance ?: synchronized(this) {
+                instance ?: Repository(remoteData)
+            }
     }
 
     override fun getAllMovies(): LiveData<ArrayList<Movie?>> {
@@ -25,7 +26,7 @@ class Repository private constructor(private val remoteDataSource: RemoteDataSou
         remoteDataSource.getMovies()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe ({
+            .subscribe({
                 val moviesList = ArrayList<Movie?>()
                 if (it.results != null) {
                     for (item in it.results) {
@@ -33,6 +34,7 @@ class Repository private constructor(private val remoteDataSource: RemoteDataSou
                     }
                 }
                 moviesResults.postValue(moviesList)
+                EspressoIdlingResource.decrement()
             }, {
                 it.printStackTrace()
             })
@@ -44,7 +46,7 @@ class Repository private constructor(private val remoteDataSource: RemoteDataSou
         remoteDataSource.getTvShow()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe ({
+            .subscribe({
                 val tvShowList = ArrayList<TVShow?>()
                 if (it.results != null) {
                     for (item in it.results) {
@@ -52,6 +54,7 @@ class Repository private constructor(private val remoteDataSource: RemoteDataSou
                     }
                 }
                 tvShowResults.postValue(tvShowList)
+                EspressoIdlingResource.decrement()
             }, {
                 it.printStackTrace()
             })
@@ -63,7 +66,7 @@ class Repository private constructor(private val remoteDataSource: RemoteDataSou
         remoteDataSource.getMoviesById(id)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe ({
+            .subscribe({
                 movieResult.postValue(it)
             }, {
                 it.printStackTrace()
@@ -76,7 +79,7 @@ class Repository private constructor(private val remoteDataSource: RemoteDataSou
         remoteDataSource.getTVShowById(id)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe ({
+            .subscribe({
                 tvShowResult.postValue(it)
             }, {
                 it.printStackTrace()
