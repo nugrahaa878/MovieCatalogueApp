@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.nugrahaa.moviecatalogue.di.Injection
-import com.nugrahaa.moviecatalogue.model.Repository
+import com.nugrahaa.moviecatalogue.data.Repository
 import com.nugrahaa.moviecatalogue.view.detail.DetailActivityViewModel
 import com.nugrahaa.moviecatalogue.view.movies.MoviesViewModel
 import com.nugrahaa.moviecatalogue.view.tvshows.TvShowsViewModel

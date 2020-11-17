@@ -8,8 +8,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.nugrahaa.moviecatalogue.R
-import com.nugrahaa.moviecatalogue.model.remote.response.Movie
-import com.nugrahaa.moviecatalogue.model.remote.response.TVShow
+import com.nugrahaa.moviecatalogue.data.remote.response.Movie
+import com.nugrahaa.moviecatalogue.data.remote.response.TVShow
 import com.nugrahaa.moviecatalogue.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.activity_detail.*
 

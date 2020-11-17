@@ -3,9 +3,11 @@ package com.nugrahaa.moviecatalogue.view.movies
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.nugrahaa.moviecatalogue.model.Repository
-import com.nugrahaa.moviecatalogue.model.remote.response.Movie
+import androidx.lifecycle.Observer
+import com.nugrahaa.moviecatalogue.data.Repository
+import com.nugrahaa.moviecatalogue.data.remote.response.Movie
 import com.nugrahaa.moviecatalogue.utils.DataDummy
+import io.reactivex.rxjava3.core.Flowable
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -30,6 +32,9 @@ class MoviesViewModelTest {
     @Mock
     private lateinit var repository: Repository
 
+    @Mock
+    private lateinit var observer: Observer<ArrayList<Movie?>>
+
     @Before
     fun setUp() {
         viewModel = MoviesViewModel(repository)
@@ -44,6 +49,9 @@ class MoviesViewModelTest {
         verify(repository).getAllMovies()
         assertNotNull(movies)
         assertEquals(3, movies.value?.size)
+
+        viewModel.getMovies().observeForever(observer)
+        verify(observer).onChanged(moviesDummy.value)
     }
 
 }

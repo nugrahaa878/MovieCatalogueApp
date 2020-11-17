@@ -3,11 +3,9 @@ package com.nugrahaa.moviecatalogue.view.tvshows
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.nugrahaa.moviecatalogue.model.Repository
-import com.nugrahaa.moviecatalogue.model.remote.response.Movie
-import com.nugrahaa.moviecatalogue.model.remote.response.TVShow
+import com.nugrahaa.moviecatalogue.data.Repository
+import com.nugrahaa.moviecatalogue.data.remote.response.TVShow
 import com.nugrahaa.moviecatalogue.utils.DataDummy
-import com.nugrahaa.moviecatalogue.view.movies.MoviesViewModel
 import org.junit.Before
 import org.junit.Test
 
@@ -15,7 +13,6 @@ import org.junit.Assert.*
 import org.junit.Rule
 import org.junit.runner.RunWith
 import org.mockito.Mock
-import org.mockito.Mockito
 import org.mockito.Mockito.`when`
 import org.mockito.Mockito.verify
 import org.mockito.junit.MockitoJUnitRunner

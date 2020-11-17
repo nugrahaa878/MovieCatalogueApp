@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.nugrahaa.moviecatalogue.R
-import com.nugrahaa.moviecatalogue.model.remote.response.TVShow
+import com.nugrahaa.moviecatalogue.data.remote.response.TVShow
 import kotlinx.android.synthetic.main.items_tvshow.view.*
 
 class TvShowsAdapter(private val listTvShow: ArrayList<TVShow?>,

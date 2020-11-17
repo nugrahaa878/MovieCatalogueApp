@@ -1,8 +1,8 @@
-package com.nugrahaa.moviecatalogue.model.remote.response
+package com.nugrahaa.moviecatalogue.data.remote.response
 
 import com.google.gson.annotations.SerializedName
 
-data class ResponseMovie(
+data class ResponseTvShow(
 
 	@field:SerializedName("page")
 		val page: Int? = null,
@@ -11,7 +11,7 @@ data class ResponseMovie(
 		val totalPages: Int? = null,
 
 	@field:SerializedName("results")
-		val results: List<Movie?>? = null,
+		val results: List<TVShow?>? = null,
 
 	@field:SerializedName("total_results")
 		val totalResults: Int? = null

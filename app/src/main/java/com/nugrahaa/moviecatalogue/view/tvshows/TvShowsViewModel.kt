@@ -2,8 +2,8 @@ package com.nugrahaa.moviecatalogue.view.tvshows
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.nugrahaa.moviecatalogue.model.Repository
-import com.nugrahaa.moviecatalogue.model.remote.response.TVShow
+import com.nugrahaa.moviecatalogue.data.Repository
+import com.nugrahaa.moviecatalogue.data.remote.response.TVShow
 
 class TvShowsViewModel(private val repository: Repository) : ViewModel() {
 

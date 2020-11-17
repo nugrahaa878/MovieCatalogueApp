@@ -1,4 +1,4 @@
-package com.nugrahaa.moviecatalogue.model.local
+package com.nugrahaa.moviecatalogue.data.local
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

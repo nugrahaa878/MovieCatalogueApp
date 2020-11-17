@@ -1,9 +1,9 @@
-package com.nugrahaa.moviecatalogue.model.remote
+package com.nugrahaa.moviecatalogue.data.remote
 
-import com.nugrahaa.moviecatalogue.model.remote.response.Movie
-import com.nugrahaa.moviecatalogue.model.remote.response.ResponseMovie
-import com.nugrahaa.moviecatalogue.model.remote.response.ResponseTvShow
-import com.nugrahaa.moviecatalogue.model.remote.response.TVShow
+import com.nugrahaa.moviecatalogue.data.remote.response.Movie
+import com.nugrahaa.moviecatalogue.data.remote.response.ResponseMovie
+import com.nugrahaa.moviecatalogue.data.remote.response.ResponseTvShow
+import com.nugrahaa.moviecatalogue.data.remote.response.TVShow
 import com.nugrahaa.moviecatalogue.network.ApiConfig
 import io.reactivex.rxjava3.core.Flowable
 

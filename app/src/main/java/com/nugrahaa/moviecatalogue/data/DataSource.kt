@@ -1,8 +1,8 @@
-package com.nugrahaa.moviecatalogue.model
+package com.nugrahaa.moviecatalogue.data
 
 import androidx.lifecycle.LiveData
-import com.nugrahaa.moviecatalogue.model.remote.response.Movie
-import com.nugrahaa.moviecatalogue.model.remote.response.TVShow
+import com.nugrahaa.moviecatalogue.data.remote.response.Movie
+import com.nugrahaa.moviecatalogue.data.remote.response.TVShow
 
 interface DataSource {
 

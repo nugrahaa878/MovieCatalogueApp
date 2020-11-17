@@ -1,11 +1,12 @@
 package com.nugrahaa.moviecatalogue.utils
 
-import androidx.lifecycle.LiveData
 import com.nugrahaa.moviecatalogue.R
-import com.nugrahaa.moviecatalogue.model.local.MovieEntity
-import com.nugrahaa.moviecatalogue.model.local.TvShowEntity
-import com.nugrahaa.moviecatalogue.model.remote.response.Movie
-import com.nugrahaa.moviecatalogue.model.remote.response.TVShow
+import com.nugrahaa.moviecatalogue.data.local.MovieEntity
+import com.nugrahaa.moviecatalogue.data.local.TvShowEntity
+import com.nugrahaa.moviecatalogue.data.remote.response.Movie
+import com.nugrahaa.moviecatalogue.data.remote.response.ResponseMovie
+import com.nugrahaa.moviecatalogue.data.remote.response.ResponseTvShow
+import com.nugrahaa.moviecatalogue.data.remote.response.TVShow
 
 object DataDummy {
 
@@ -109,6 +110,47 @@ object DataDummy {
         )
 
         return tvShow
+    }
+
+    fun generateMovieAPI(): Movie {
+        return Movie(
+            "mantab",
+            "indo",
+            "Si Madun",
+            true,
+            "Si Ujang",
+            "mantab",
+            "mantab",
+            "jauari",
+            12.0,
+            12.0,
+            2,
+            true,
+            10
+        )
+    }
+
+    fun generateTvShowAPI(): TVShow {
+        val listId = ArrayList<Int?>()
+        val listCountry = ArrayList<String?>()
+        listId.add(1)
+        listCountry.add("Indonesia")
+
+        return TVShow(
+            "januari",
+            "mantab",
+            "indo",
+            listId,
+            "mantab",
+            listCountry,
+            "asd",
+            "Ku patah hati",
+            12.0,
+            12.0,
+            "Aku patah hati",
+            11,
+            12
+        )
     }
 
     fun generateDummyMovies(): ArrayList<MovieEntity> {
@@ -410,6 +452,24 @@ object DataDummy {
         )
 
         return tvShows
+    }
+
+    fun generateResponseMovieDummyAPI(): ResponseMovie {
+        return ResponseMovie(
+            2,
+            2,
+            DataDummy.generateDummyMoviesAPI(),
+            10
+        )
+    }
+
+    fun generateResponseTVShowDummyAPI(): ResponseTvShow {
+        return ResponseTvShow(
+            3,
+            3,
+            DataDummy.generateDummyTvShowAPI(),
+            10
+        )
     }
 
     fun getMoviesById(id: Int, listMovies: ArrayList<MovieEntity>): MovieEntity {

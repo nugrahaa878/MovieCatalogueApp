@@ -1,6 +1,6 @@
 package com.nugrahaa.moviecatalogue.view.tvshows
 
-import com.nugrahaa.moviecatalogue.model.remote.response.TVShow
+import com.nugrahaa.moviecatalogue.data.remote.response.TVShow
 
 interface TvShowsFragmentCallback {
 
