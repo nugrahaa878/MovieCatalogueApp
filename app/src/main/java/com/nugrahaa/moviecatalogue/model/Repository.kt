@@ -4,12 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.nugrahaa.moviecatalogue.model.remote.RemoteDataSource
 import com.nugrahaa.moviecatalogue.model.remote.response.Movie
-import com.nugrahaa.moviecatalogue.model.remote.response.ResponseMovie
-import com.nugrahaa.moviecatalogue.model.remote.response.ResponseTvShow
 import com.nugrahaa.moviecatalogue.model.remote.response.TVShow
-import com.nugrahaa.moviecatalogue.network.ApiConfig
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 class Repository private constructor(private val remoteDataSource: RemoteDataSource): DataSource {
@@ -25,7 +21,7 @@ class Repository private constructor(private val remoteDataSource: RemoteDataSou
     }
 
     override fun getAllMovies(): LiveData<ArrayList<Movie?>> {
-        var moviesResults = MutableLiveData<ArrayList<Movie?>>()
+        val moviesResults = MutableLiveData<ArrayList<Movie?>>()
         remoteDataSource.getMovies()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -44,7 +40,7 @@ class Repository private constructor(private val remoteDataSource: RemoteDataSou
     }
 
     override fun getAllTvShow(): LiveData<ArrayList<TVShow?>> {
-        var tvShowResults = MutableLiveData<ArrayList<TVShow?>>()
+        val tvShowResults = MutableLiveData<ArrayList<TVShow?>>()
         remoteDataSource.getTvShow()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -63,7 +59,7 @@ class Repository private constructor(private val remoteDataSource: RemoteDataSou
     }
 
     override fun getMoviesById(id: String): LiveData<Movie> {
-        var movieResult = MutableLiveData<Movie>()
+        val movieResult = MutableLiveData<Movie>()
         remoteDataSource.getMoviesById(id)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -76,7 +72,7 @@ class Repository private constructor(private val remoteDataSource: RemoteDataSou
     }
 
     override fun getTVShowById(id: String): LiveData<TVShow> {
-        var tvShowResult = MutableLiveData<TVShow>()
+        val tvShowResult = MutableLiveData<TVShow>()
         remoteDataSource.getTVShowById(id)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())

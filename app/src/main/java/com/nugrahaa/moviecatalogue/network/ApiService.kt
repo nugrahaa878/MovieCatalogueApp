@@ -5,7 +5,6 @@ import com.nugrahaa.moviecatalogue.model.remote.response.ResponseMovie
 import com.nugrahaa.moviecatalogue.model.remote.response.ResponseTvShow
 import com.nugrahaa.moviecatalogue.model.remote.response.TVShow
 import io.reactivex.rxjava3.core.Flowable
-import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query

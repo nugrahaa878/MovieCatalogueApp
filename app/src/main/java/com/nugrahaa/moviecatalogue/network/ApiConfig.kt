@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class ApiConfig {
 
     companion object {
-        private val baseUrl = "https://api.themoviedb.org/3/"
+        private const val baseUrl = "https://api.themoviedb.org/3/"
 
         fun getApiService(): ApiService {
             val interceptor = HttpLoggingInterceptor()
