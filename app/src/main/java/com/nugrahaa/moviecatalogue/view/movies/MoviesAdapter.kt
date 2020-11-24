@@ -3,6 +3,8 @@ package com.nugrahaa.moviecatalogue.view.movies
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.paging.PagedList
+import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -11,10 +13,10 @@ import com.nugrahaa.moviecatalogue.data.remote.response.Movie
 import kotlinx.android.synthetic.main.items_movies.view.*
 
 class MoviesAdapter(
-    private val listMovie: ArrayList<Movie?>,
+    private val listMovie: PagedList<Movie?>,
     private val callback: MoviesFragmentCallback
 ) :
-    RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder>() {
+    PagedListAdapter<Movie, RecyclerView.ViewHolder>(Movie().DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -24,9 +26,10 @@ class MoviesAdapter(
         return MoviesViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: MoviesAdapter.MoviesViewHolder, position: Int) {
-        val movie = listMovie[position]
-        holder.bind(movie)
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        if (holder is MoviesViewHolder) {
+            holder.bind(getItem(position))
+        }
     }
 
     override fun getItemCount(): Int = listMovie.size
