@@ -68,6 +68,7 @@ class Repository private constructor(private val remoteDataSource: RemoteDataSou
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 movieResult.postValue(it)
+                EspressoIdlingResource.decrement()
             }, {
                 it.printStackTrace()
             })
@@ -81,6 +82,7 @@ class Repository private constructor(private val remoteDataSource: RemoteDataSou
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 tvShowResult.postValue(it)
+                EspressoIdlingResource.decrement()
             }, {
                 it.printStackTrace()
             })

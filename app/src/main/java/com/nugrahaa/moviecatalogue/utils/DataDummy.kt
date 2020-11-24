@@ -472,12 +472,4 @@ object DataDummy {
         )
     }
 
-    fun getMoviesById(id: Int, listMovies: ArrayList<MovieEntity>): MovieEntity {
-        return listMovies[id]
-    }
-
-    fun getTvShowById(id: Int, listTvShow: ArrayList<TvShowEntity>): TvShowEntity {
-        return listTvShow[id]
-    }
-
 }

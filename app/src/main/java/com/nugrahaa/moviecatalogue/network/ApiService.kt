@@ -14,7 +14,8 @@ interface ApiService {
     @GET("movie/popular")
     fun getMovieData(
         @Query("api_key") api: String,
-        @Query("language") language: String
+        @Query("language") language: String,
+        @Query("page") page: Long
     ): Flowable<ResponseMovie>
 
     @GET("tv/popular")

@@ -8,21 +8,16 @@ import com.nugrahaa.moviecatalogue.network.ApiConfig
 import com.nugrahaa.moviecatalogue.utils.EspressoIdlingResource
 import io.reactivex.rxjava3.core.Flowable
 
-class RemoteDataSource {
+class TVShowRemoteDataSource {
 
     companion object {
         @Volatile
-        private var instance: RemoteDataSource? = null
+        private var instance: TVShowRemoteDataSource? = null
 
-        fun getInstance(): RemoteDataSource =
+        fun getInstance(): TVShowRemoteDataSource =
             instance ?: synchronized(this) {
-                instance ?: RemoteDataSource()
+                instance ?: TVShowRemoteDataSource()
             }
-    }
-
-    fun getMovies(): Flowable<ResponseMovie> {
-        EspressoIdlingResource.increment()
-        return ApiConfig.getApiService().getMovieData("b64d761def5c00e40e6a36e0032741bf", "en-US", 1)
     }
 
     fun getTvShow(): Flowable<ResponseTvShow> {
