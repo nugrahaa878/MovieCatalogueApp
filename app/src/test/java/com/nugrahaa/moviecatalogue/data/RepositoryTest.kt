@@ -2,19 +2,23 @@ package com.nugrahaa.moviecatalogue.data
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.nugrahaa.moviecatalogue.data.remote.RemoteDataSource
+import com.nugrahaa.moviecatalogue.data.remote.response.Movie
+import com.nugrahaa.moviecatalogue.data.remote.response.ResponseMovie
+import com.nugrahaa.moviecatalogue.data.remote.response.ResponseTvShow
+import com.nugrahaa.moviecatalogue.data.remote.response.TVShow
 import com.nugrahaa.moviecatalogue.utils.DataDummy
 import com.nugrahaa.moviecatalogue.utils.LiveDataTestUtil
 import io.reactivex.rxjava3.core.Flowable
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertNotNull
-import org.junit.Before
-import org.junit.Rule
+import kotlinx.coroutines.runBlocking
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
 import org.mockito.Mockito.verify
 import org.mockito.junit.MockitoJUnitRunner
+import org.junit.Assert.*
+import org.junit.Before
+import org.junit.Rule
 
 @RunWith(MockitoJUnitRunner::class)
 class RepositoryTest {
@@ -35,8 +39,8 @@ class RepositoryTest {
 
     @Test
     fun getAllMovies() {
-        val moviesResults = DataDummy.generateResponseMovieDummyAPI()
-        `when`(remote.getMovies()).thenReturn(Flowable.just(moviesResults))
+        var moviesResults = DataDummy.generateResponseMovieDummyAPI()
+        `when`<Flowable<ResponseMovie>>(remote.getMovies()).thenReturn(Flowable.just(moviesResults))
         val moviesResponse = LiveDataTestUtil.getValue(fakeRepository.getAllMovies())
         verify(remote).getMovies()
         assertNotNull(moviesResponse)
@@ -45,8 +49,8 @@ class RepositoryTest {
 
     @Test
     fun getAllTVShow() {
-        val tvShowResults = DataDummy.generateResponseTVShowDummyAPI()
-        `when`(remote.getTvShow()).thenReturn(Flowable.just(tvShowResults))
+        var tvShowResults = DataDummy.generateResponseTVShowDummyAPI()
+        `when`<Flowable<ResponseTvShow>>(remote.getTvShow()).thenReturn(Flowable.just(tvShowResults))
         val tvShowResponse = LiveDataTestUtil.getValue(fakeRepository.getAllTvShow())
         verify(remote).getTvShow()
         assertNotNull(tvShowResponse)
@@ -55,8 +59,8 @@ class RepositoryTest {
 
     @Test
     fun getMoviesById() {
-        val movie = DataDummy.generateMovieAPI()
-        `when`(remote.getMoviesById("2")).thenReturn(Flowable.just(movie))
+        var movie = DataDummy.generateMovieAPI()
+        `when`<Flowable<Movie>>(remote.getMoviesById("2")).thenReturn(Flowable.just(movie))
         val movieResponse = LiveDataTestUtil.getValue(fakeRepository.getMoviesById("2"))
         verify(remote).getMoviesById("2")
         assertNotNull(movieResponse)
@@ -65,8 +69,8 @@ class RepositoryTest {
 
     @Test
     fun getTVShowById() {
-        val tvShow = DataDummy.generateTvShowAPI()
-        `when`(remote.getTVShowById("3")).thenReturn(Flowable.just(tvShow))
+        var tvShow = DataDummy.generateTvShowAPI()
+        `when`<Flowable<TVShow>>(remote.getTVShowById("3")).thenReturn(Flowable.just(tvShow))
         val tvShowResponse = LiveDataTestUtil.getValue(fakeRepository.getTVShowById("3"))
         verify(remote).getTVShowById("3")
         assertNotNull(tvShowResponse)

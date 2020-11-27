@@ -1,21 +1,24 @@
 package com.nugrahaa.moviecatalogue.view.movies
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.nugrahaa.moviecatalogue.data.Repository
 import com.nugrahaa.moviecatalogue.data.remote.response.Movie
 import com.nugrahaa.moviecatalogue.utils.DataDummy
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertNotNull
+import io.reactivex.rxjava3.core.Flowable
+import org.junit.Test
+
+import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
-import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
 import org.mockito.Mockito.verify
 import org.mockito.junit.MockitoJUnitRunner
+import kotlin.collections.ArrayList
 
 @RunWith(MockitoJUnitRunner::class)
 class MoviesViewModelTest {
@@ -41,7 +44,7 @@ class MoviesViewModelTest {
     fun getMovies() {
         val moviesDummy = MutableLiveData<ArrayList<Movie?>>()
         moviesDummy.postValue(DataDummy.generateDummyMoviesAPI())
-        `when`(repository.getAllMovies()).thenReturn(moviesDummy)
+        `when`<LiveData<ArrayList<Movie?>>>(repository.getAllMovies()).thenReturn(moviesDummy)
         val movies = viewModel.getMovies()
         verify(repository).getAllMovies()
         assertNotNull(movies)

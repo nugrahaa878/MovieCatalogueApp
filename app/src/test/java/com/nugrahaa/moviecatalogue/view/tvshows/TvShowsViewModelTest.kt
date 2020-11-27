@@ -1,15 +1,16 @@
 package com.nugrahaa.moviecatalogue.view.tvshows
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.nugrahaa.moviecatalogue.data.Repository
 import com.nugrahaa.moviecatalogue.data.remote.response.TVShow
 import com.nugrahaa.moviecatalogue.utils.DataDummy
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertNotNull
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
+
+import org.junit.Assert.*
+import org.junit.Rule
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
@@ -37,7 +38,7 @@ class TvShowsViewModelTest {
     fun getMovies() {
         val tvShowDummy = MutableLiveData<ArrayList<TVShow?>>()
         tvShowDummy.postValue(DataDummy.generateDummyTvShowAPI())
-        `when`(repository.getAllTvShow()).thenReturn(tvShowDummy)
+        `when`<LiveData<ArrayList<TVShow?>>>(repository.getAllTvShow()).thenReturn(tvShowDummy)
         val tvShow = viewModel.getTvShow()
         verify(repository).getAllTvShow()
         assertNotNull(tvShow)

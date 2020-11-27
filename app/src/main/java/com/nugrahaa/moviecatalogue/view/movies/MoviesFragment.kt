@@ -25,8 +25,8 @@ class MoviesFragment : Fragment(), MoviesFragmentCallback {
     private lateinit var listMovieAdapter: MoviesAdapter
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_movies, container, false)
@@ -38,8 +38,8 @@ class MoviesFragment : Fragment(), MoviesFragmentCallback {
         if (activity != null) {
             val factory = ViewModelFactory.getInstance(requireActivity())
             viewModel = ViewModelProvider(
-                this,
-                factory
+                    this,
+                    factory
             )[MoviesViewModel::class.java]
 
             viewModel.getMovies()

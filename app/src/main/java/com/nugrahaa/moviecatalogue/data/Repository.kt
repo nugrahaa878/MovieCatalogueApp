@@ -10,12 +10,12 @@ import com.nugrahaa.moviecatalogue.data.remote.RemoteDataSource
 import com.nugrahaa.moviecatalogue.data.remote.factory.MovieDataFactory
 import com.nugrahaa.moviecatalogue.data.remote.response.Movie
 import com.nugrahaa.moviecatalogue.data.remote.response.TVShow
-import com.nugrahaa.moviecatalogue.utils.EspressoIdlingResource
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
 
+<<<<<<< HEAD
 class Repository : DataSource {
 
     private lateinit var executor: Executor
@@ -23,12 +23,16 @@ class Repository : DataSource {
 
     private var movieDataSource = MovieDataSource()
     private var remoteDataSource = RemoteDataSource()
+=======
+class Repository private constructor(private val remoteDataSource: RemoteDataSource): DataSource {
+>>>>>>> parent of fb6fe1a... refactor
 
     companion object {
         @Volatile
         private var instance: Repository? = null
 
         fun getInstance(remoteData: RemoteDataSource): Repository =
+<<<<<<< HEAD
             instance ?: synchronized(this) {
                 instance ?: Repository()
             }
@@ -48,6 +52,30 @@ class Repository : DataSource {
         Log.d("DATA REPOSITORY", movieData.value.toString())
 
         return movieData
+=======
+                instance ?: synchronized(this) {
+                    instance ?: Repository(remoteData)
+                }
+    }
+
+    override fun getAllMovies(): LiveData<ArrayList<Movie?>> {
+        val moviesResults = MutableLiveData<ArrayList<Movie?>>()
+        remoteDataSource.getMovies()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe ({
+                val moviesList = ArrayList<Movie?>()
+                if (it.results != null) {
+                    for (item in it.results) {
+                        moviesList.add(item)
+                    }
+                }
+                moviesResults.postValue(moviesList)
+            }, {
+                it.printStackTrace()
+            })
+        return moviesResults
+>>>>>>> parent of fb6fe1a... refactor
     }
 
     override fun getAllTvShow(): LiveData<ArrayList<TVShow?>> {
@@ -55,7 +83,7 @@ class Repository : DataSource {
         remoteDataSource.getTvShow()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
+            .subscribe ({
                 val tvShowList = ArrayList<TVShow?>()
                 if (it.results != null) {
                     for (item in it.results) {
@@ -63,7 +91,6 @@ class Repository : DataSource {
                     }
                 }
                 tvShowResults.postValue(tvShowList)
-                EspressoIdlingResource.decrement()
             }, {
                 it.printStackTrace()
             })
@@ -75,7 +102,7 @@ class Repository : DataSource {
         remoteDataSource.getMoviesById(id)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
+            .subscribe ({
                 movieResult.postValue(it)
                 EspressoIdlingResource.decrement()
             }, {
@@ -89,7 +116,7 @@ class Repository : DataSource {
         remoteDataSource.getTVShowById(id)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
+            .subscribe ({
                 tvShowResult.postValue(it)
                 EspressoIdlingResource.decrement()
             }, {
