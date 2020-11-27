@@ -12,29 +12,30 @@ import retrofit2.http.Query
 interface ApiService {
 
     @GET("movie/popular")
-<<<<<<< HEAD
     fun getMovieData(
         @Query("api_key") api: String,
         @Query("language") language: String,
-        @Query("page") page: Int
+        @Query("page") page: Long
     ): Flowable<ResponseMovie>
-=======
-    fun getMovieData(@Query("api_key") api: String,
-                     @Query("language") language: String): Flowable<ResponseMovie>
->>>>>>> parent of fb6fe1a... refactor
 
     @GET("tv/popular")
-    fun getTvShowData(@Query("api_key") api: String,
-                      @Query("language") language: String): Flowable<ResponseTvShow>
+    fun getTvShowData(
+        @Query("api_key") api: String,
+        @Query("language") language: String
+    ): Flowable<ResponseTvShow>
 
     @GET("movie/{id}")
-    fun getMovieById(@Path("id") id: String,
-                     @Query("api_key") api: String,
-                     @Query("language") language: String): Flowable<Movie>
+    fun getMovieById(
+        @Path("id") id: String,
+        @Query("api_key") api: String,
+        @Query("language") language: String
+    ): Flowable<Movie>
 
     @GET("tv/{id}")
-    fun getTvShowById(@Path("id") id: String,
-                      @Query("api_key") api: String,
-                      @Query("language") language: String): Flowable<TVShow>
+    fun getTvShowById(
+        @Path("id") id: String,
+        @Query("api_key") api: String,
+        @Query("language") language: String
+    ): Flowable<TVShow>
 
 }

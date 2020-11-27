@@ -23,8 +23,8 @@ class TvShowsFragment : Fragment(), TvShowsFragmentCallback {
     private lateinit var listTvShowAdapter: TvShowsAdapter
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_tv_shows, container, false)
@@ -36,8 +36,8 @@ class TvShowsFragment : Fragment(), TvShowsFragmentCallback {
         if (activity != null) {
             val factory = ViewModelFactory.getInstance(requireActivity())
             viewModel = ViewModelProvider(
-                    this,
-                    factory
+                this,
+                factory
             )[TvShowsViewModel::class.java]
 
             viewModel.getTvShow()

@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import com.nugrahaa.moviecatalogue.data.remote.RemoteDataSource
 import com.nugrahaa.moviecatalogue.data.remote.response.Movie
 import com.nugrahaa.moviecatalogue.data.remote.response.TVShow
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 class FakeRepository (private val remoteDataSource: RemoteDataSource): DataSource {

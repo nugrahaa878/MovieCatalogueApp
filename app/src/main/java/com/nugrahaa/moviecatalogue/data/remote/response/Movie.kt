@@ -1,6 +1,5 @@
 package com.nugrahaa.moviecatalogue.data.remote.response
 
-import androidx.recyclerview.widget.DiffUtil
 import com.google.gson.annotations.SerializedName
 
 data class Movie(
@@ -42,16 +41,5 @@ data class Movie(
 	val adult: Boolean? = null,
 
 	@field:SerializedName("vote_count")
-	val voteCount: Int? = null,
-
-	var DIFF_CALLBACK: DiffUtil.ItemCallback<Movie> = object : DiffUtil.ItemCallback<Movie>() {
-		override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
-			return oldItem.title == newItem.title
-		}
-
-		override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean {
-			return oldItem.equals(newItem)
-		}
-
-	}
+	val voteCount: Int? = null
 )
