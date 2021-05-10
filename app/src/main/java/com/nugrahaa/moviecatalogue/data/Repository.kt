@@ -2,6 +2,7 @@ package com.nugrahaa.moviecatalogue.data
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.nugrahaa.moviecatalogue.data.local.LocalDataSource
 import com.nugrahaa.moviecatalogue.data.remote.RemoteDataSource
 import com.nugrahaa.moviecatalogue.data.remote.response.Movie
 import com.nugrahaa.moviecatalogue.data.remote.response.TVShow
@@ -9,15 +10,17 @@ import com.nugrahaa.moviecatalogue.utils.EspressoIdlingResource
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 
-class Repository private constructor(private val remoteDataSource: RemoteDataSource) : DataSource {
+class Repository private constructor(
+    private val remoteDataSource: RemoteDataSource,
+    private val localDataSource: LocalDataSource) : DataSource {
 
     companion object {
         @Volatile
         private var instance: Repository? = null
 
-        fun getInstance(remoteData: RemoteDataSource): Repository =
+        fun getInstance(remoteData: RemoteDataSource, localData:LocalDataSource): Repository =
             instance ?: synchronized(this) {
-                instance ?: Repository(remoteData)
+                instance ?: Repository(remoteData, localData)
             }
     }
 

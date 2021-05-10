@@ -39,7 +39,6 @@ class HomeActivityTest {
     @After
     fun tearDown() {
         IdlingRegistry.getInstance().unregister(EspressoIdlingResource.idlingResource)
-
     }
 
     @Test
